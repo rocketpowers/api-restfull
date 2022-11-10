@@ -5,20 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Pessoas")
+@Table(name = "Peoples")
 public class People {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigo;
 
-	private String nome;
+	private String name;
 
-	private String idade;
+	private String age;
 
 }

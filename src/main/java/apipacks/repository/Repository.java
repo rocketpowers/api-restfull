@@ -6,14 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 
 import apipacks.model.People;
 
-
 public interface Repository extends CrudRepository<People, Integer> {
-	
-	
+
 	List<People> findAll();
-	
-	People findByCodigo (int codigo);
-	
-	
+
+	People findByCodigo(int codigo);
+
+	List<People> findByOrderByName();
 
 }

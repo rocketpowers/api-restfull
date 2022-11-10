@@ -29,9 +29,14 @@ public class Controller {
 	@DeleteMapping("/api/{codigo}")
 	public void remove(@PathVariable int codigo) {
 		People obj = selectForCod(codigo);
-		
 		action.delete(obj);
 	}
+	
+	@GetMapping("/api/orderName")
+	public List<People> orderNames(){
+		return action.findByOrderByName();
+	}
+	
 	
 	@GetMapping("/api/account")
 	public long account() {
@@ -59,9 +64,9 @@ public class Controller {
 		return "hello word";
 	}
 
-	@GetMapping("/welcome/{nome}")
-	public String welcome(@PathVariable String nome) {
-		return "welcome  " + nome;
+	@GetMapping("/welcome/{name}")
+	public String welcome(@PathVariable String name) {
+		return "welcome  " + name;
 	}
 
 	@PostMapping("/people")
