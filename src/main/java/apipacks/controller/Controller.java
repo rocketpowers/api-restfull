@@ -3,6 +3,7 @@ package apipacks.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,19 @@ public class Controller {
 	public People edit(@RequestBody People obj) {
 		return action.save(obj);
 
+	}
+
+	@DeleteMapping("/api/{codigo}")
+	public void remove(@PathVariable int codigo) {
+		People obj = selectForCod(codigo);
+		
+		action.delete(obj);
+	}
+	
+	@GetMapping("/api/account")
+	public long account() {
+		return action.count();
+		
 	}
 
 	@GetMapping("/api")
