@@ -23,7 +23,11 @@ public class Controller {
 	public List<People>select(){
 		return action.findAll();
 	}
-
+	
+	@GetMapping("/api/{codigo}")
+	public People selectForCod(@PathVariable int codigo){
+		return action.findByCodigo(codigo);
+	}
 	@PostMapping("/api")
 	public People register(@RequestBody People obj) {
 		return action.save(obj);

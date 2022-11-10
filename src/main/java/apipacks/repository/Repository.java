@@ -12,6 +12,8 @@ public interface Repository extends CrudRepository<People, Integer> {
 	
 	List<People> findAll();
 	
+	People findByCodigo (int codigo);
+	
 	
 
 }
