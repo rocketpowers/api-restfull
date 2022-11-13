@@ -10,5 +10,9 @@ findByNameOrderByIdadeAsc   search by specific name and sort by age
 
 function containing working
 
+starts and endsWith working
+
+
+
  
  

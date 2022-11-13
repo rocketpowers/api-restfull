@@ -85,7 +85,17 @@ public class Controller {
 
 	@GetMapping("/api/haveName")
 	public List<People> haveName() {
-		return action.findByNameContaining("a");
+		return action.findByNameContaining("a"); // letters or names
+	}
+
+	@GetMapping("/api/startsWith")
+	public List<People> startsWith() {
+		return action.findByNameStartsWith("a");
+	}
+
+	@GetMapping("/api/endsWith")
+	public List<People> endsWith() {
+		return action.findByNameEndsWith("e");
 	}
 
 }
