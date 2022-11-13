@@ -102,4 +102,8 @@ public class Controller {
 	public int sumAge() {
 		return action.somaIdades();
 	}
+	@GetMapping("/api/age")
+	public List <Peoples> ageOlderOrEqual(){
+		return action.ageOlderOrEqual(57);
+	}
 }
