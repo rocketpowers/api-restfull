@@ -2,17 +2,18 @@ package apipacks.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import apipacks.model.People;
+import apipacks.model.Peoples;
 
-public interface Repository extends CrudRepository<People, Integer> {
+public interface Repository extends CrudRepository<Peoples, Integer> {
 
-	List<People> findAll();
+	List<Peoples> findAll();
 
-	People findByCodigo(int codigo);
+	Peoples findByCodigo(int codigo);
 
-	List<People> findByOrderByName();
+	List<Peoples> findByOrderByName();
 
 	// List<People> findByOrderByNameAsc();
 
@@ -20,14 +21,15 @@ public interface Repository extends CrudRepository<People, Integer> {
 
 	// List<People> findByNameOrderByIdadeAsc(String name);
 
-	List<People> findByNameOrderByAge(String String);
+	List<Peoples> findByNameOrderByAge(String String);
 
-	List<People> findByNameContaining(String termo);
+	List<Peoples> findByNameContaining(String termo);
 
-	List<People> findByNameStartsWith(String string);
+	List<Peoples> findByNameStartsWith(String string);
 
-	List<People> findByNameEndsWith(String string);
+	List<Peoples> findByNameEndsWith(String string);
 
-	
+	@Query(value = "SELECT SUM(age) FROM peoples", nativeQuery = true)
+	int somaIdades();
 
 }

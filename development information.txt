@@ -12,6 +12,8 @@ function containing working
 
 starts and endsWith working
 
+function SUM sql working
+
 
 
  

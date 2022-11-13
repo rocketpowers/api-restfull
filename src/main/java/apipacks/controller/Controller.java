@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import apipacks.model.People;
+import apipacks.model.Peoples;
 import apipacks.repository.Repository;
 
 @RestController
@@ -21,19 +21,19 @@ public class Controller {
 	private Repository action;
 
 	@PutMapping("/api")
-	public People edit(@RequestBody People obj) {
+	public Peoples edit(@RequestBody Peoples obj) {
 		return action.save(obj);
 
 	}
 
 	@DeleteMapping("/api/{codigo}")
 	public void remove(@PathVariable int codigo) {
-		People obj = selectForCod(codigo);
+		Peoples obj = selectForCod(codigo);
 		action.delete(obj);
 	}
 
 	@GetMapping("/api/orderName")
-	public List<People> orderNames() {
+	public List<Peoples> orderNames() {
 		return action.findByOrderByName();
 		// return action.findByOrderByNameAsc();
 		// return action.findByOrderByNameDesc();
@@ -41,7 +41,7 @@ public class Controller {
 	}
 
 	@GetMapping("/api/orderName2")
-	public List<People> orderName2() {
+	public List<Peoples> orderName2() {
 		return action.findByNameOrderByAge("mike");
 
 	}
@@ -53,17 +53,17 @@ public class Controller {
 	}
 
 	@GetMapping("/api")
-	public List<People> select() {
+	public List<Peoples> select() {
 		return action.findAll();
 	}
 
 	@GetMapping("/api/{codigo}")
-	public People selectForCod(@PathVariable int codigo) {
+	public Peoples selectForCod(@PathVariable int codigo) {
 		return action.findByCodigo(codigo);
 	}
 
 	@PostMapping("/api")
-	public People register(@RequestBody People obj) {
+	public Peoples register(@RequestBody Peoples obj) {
 		return action.save(obj);
 	}
 
@@ -78,24 +78,28 @@ public class Controller {
 	}
 
 	@PostMapping("/people")
-	public People people(@RequestBody People p) {
+	public Peoples people(@RequestBody Peoples p) {
 		return p;
 
 	}
 
 	@GetMapping("/api/haveName")
-	public List<People> haveName() {
+	public List<Peoples> haveName() {
 		return action.findByNameContaining("a"); // letters or names
 	}
 
 	@GetMapping("/api/startsWith")
-	public List<People> startsWith() {
+	public List<Peoples> startsWith() {
 		return action.findByNameStartsWith("a");
 	}
 
 	@GetMapping("/api/endsWith")
-	public List<People> endsWith() {
+	public List<Peoples> endsWith() {
 		return action.findByNameEndsWith("e");
 	}
 
+	@GetMapping("/api/sumAge")
+	public int sumAge() {
+		return action.somaIdades();
+	}
 }
