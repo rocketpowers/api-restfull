@@ -31,17 +31,25 @@ public class Controller {
 		People obj = selectForCod(codigo);
 		action.delete(obj);
 	}
-	
+
 	@GetMapping("/api/orderName")
-	public List<People> orderNames(){
+	public List<People> orderNames() {
 		return action.findByOrderByName();
+		// return action.findByOrderByNameAsc();
+		// return action.findByOrderByNameDesc();
+
 	}
-	
-	
+
+	@GetMapping("/api/orderName2")
+	public List<People> orderName2() {
+		return action.findByNameOrderByAge("mike");
+
+	}
+
 	@GetMapping("/api/account")
 	public long account() {
 		return action.count();
-		
+
 	}
 
 	@GetMapping("/api")
@@ -74,4 +82,10 @@ public class Controller {
 		return p;
 
 	}
+
+	@GetMapping("/api/haveName")
+	public List<People> haveName() {
+		return action.findByNameContaining("a");
+	}
+
 }

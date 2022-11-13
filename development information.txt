@@ -1,10 +1,14 @@
 -the count function  used to count the records in the database
 
--orderbyname
+organization with orderByname
 
--
+organization for name com asc and desc
 
+orderName2, search for name specific
 
+findByNameOrderByIdadeAsc   search by specific name and sort by age
+
+function containing working
 
  
  
