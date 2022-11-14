@@ -58,9 +58,15 @@ public class Controller {
 
 	}
 
-	@GetMapping("/api")
-	public List<Peoples> select() {
-		return action.findAll();
+//	@GetMapping("/api")
+//	public List<Peoples> select() {
+//		return action.findAll();
+//		
+//		
+//	}
+
+	public ResponseEntity<?> select() {
+		return service.select();
 	}
 
 	@GetMapping("/api/{codigo}")
@@ -69,9 +75,9 @@ public class Controller {
 	}
 
 	@PostMapping("/api")
-	//public Peoples register(@RequestBody Peoples obj) {
-		//return action.save(obj);
-	public ResponseEntity<?> register(@RequestBody Peoples obj){
+	// public Peoples register(@RequestBody Peoples obj) {
+	// return action.save(obj);
+	public ResponseEntity<?> register(@RequestBody Peoples obj) {
 		return service.register(obj);
 	}
 

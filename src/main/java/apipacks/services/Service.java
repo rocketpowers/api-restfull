@@ -8,8 +8,6 @@ import apipacks.model.Message;
 import apipacks.model.Peoples;
 import apipacks.repository.Repository;
 
-
-
 @org.springframework.stereotype.Service
 public class Service {
 
@@ -18,6 +16,8 @@ public class Service {
 
 	@Autowired
 	private Repository action;
+
+	// register
 
 	public ResponseEntity<?> register(Peoples obj) {
 		if (obj.getName().equals("")) {
@@ -28,11 +28,18 @@ public class Service {
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
 		} else {
 
-			action.save(obj);
+			/* action.save(obj); */
+			/* return new ResponseEntity<>(obj, HttpStatus.CREATED); */
+			return new ResponseEntity<>(action.save(obj), HttpStatus.CREATED);
 
-			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		}
 
 	}
+	
+
+	public ResponseEntity<?> select(){
+		return new ResponseEntity<>(action.findAll(), HttpStatus.OK);
+
+}
 
 }
