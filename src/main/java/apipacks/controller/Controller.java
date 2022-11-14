@@ -3,6 +3,8 @@ package apipacks.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import apipacks.model.Peoples;
 import apipacks.repository.Repository;
+import apipacks.services.Service;
 
 @RestController
 public class Controller {
 
 	@Autowired
 	private Repository action;
+
+	@Autowired
+	private Service service;
 
 	@PutMapping("/api")
 	public Peoples edit(@RequestBody Peoples obj) {
@@ -63,8 +69,10 @@ public class Controller {
 	}
 
 	@PostMapping("/api")
-	public Peoples register(@RequestBody Peoples obj) {
-		return action.save(obj);
+	//public Peoples register(@RequestBody Peoples obj) {
+		//return action.save(obj);
+	public ResponseEntity<?> register(@RequestBody Peoples obj){
+		return service.register(obj);
 	}
 
 	@GetMapping("")
@@ -102,8 +110,15 @@ public class Controller {
 	public int sumAge() {
 		return action.somaIdades();
 	}
+
 	@GetMapping("/api/age")
-	public List <Peoples> ageOlderOrEqual(){
+	public List<Peoples> ageOlderOrEqual() {
 		return action.ageOlderOrEqual(57);
 	}
+
+	@GetMapping("/status")
+	public ResponseEntity<?> status() {
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
 }

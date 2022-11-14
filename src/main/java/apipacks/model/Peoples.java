@@ -9,7 +9,6 @@ import lombok.Data;
 
 @Data
 @Entity
-
 public class Peoples {
 
 	@Id
@@ -18,6 +17,6 @@ public class Peoples {
 
 	private String name;
 
-	private String age;
+	private int age;
 
 }

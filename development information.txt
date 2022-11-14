@@ -16,6 +16,8 @@ function SUM sql working
 
 creating filter the search with query in repository more function in controller working 
 
+validation name  + configuration the message 400 no service  
+
 
 
  
