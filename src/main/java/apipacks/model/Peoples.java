@@ -13,7 +13,7 @@ public class Peoples {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo;
+	private int code;
 
 	private String name;
 

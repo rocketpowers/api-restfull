@@ -35,11 +35,40 @@ public class Service {
 		}
 
 	}
-	
 
-	public ResponseEntity<?> select(){
+	// select method
+
+	public ResponseEntity<?> select() {
 		return new ResponseEntity<>(action.findAll(), HttpStatus.OK);
 
-}
+	}
 
+	public ResponseEntity<?> selectForCode(int code) {
+
+		if (action.countBycode(code) == 0) {
+
+			message.setMessage("people not find");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<>(action.findByCode(code), HttpStatus.OK);
+		}
+
+	}
+
+	public ResponseEntity<?> edit(Peoples obj) {
+
+		if (action.countBycode(obj.getCode()) == 0) {
+			message.setMessage("code not found");
+			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+		} else if (obj.getName().equals("")) {
+			message.setMessage("insert a valid name");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		} else if (obj.getAge() < 0) {
+			message.setMessage("insert a valid age");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<>(action.save(obj), HttpStatus.OK);
+
+		}
+	}
 }

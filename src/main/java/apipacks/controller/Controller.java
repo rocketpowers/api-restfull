@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import apipacks.model.Peoples;
@@ -26,16 +27,28 @@ public class Controller {
 	@Autowired
 	private Service service;
 
+	//@PutMapping("/api")
+	//public Peoples edit(@RequestBody Peoples obj) {
+		//return action.save(obj);
+	
 	@PutMapping("/api")
-	public Peoples edit(@RequestBody Peoples obj) {
-		return action.save(obj);
+	public ResponseEntity<?> edit(@RequestBody Peoples obj) {
+		return service.edit(obj);
 
 	}
 
-	@DeleteMapping("/api/{codigo}")
-	public void remove(@PathVariable int codigo) {
-		Peoples obj = selectForCod(codigo);
+//	@DeleteMapping("/api/{code}")
+//	public ResponseEntity<?> remove(@PathVariable int code) {
+//		return service.remove(code);
+//
+//	}
+
+	@DeleteMapping("/api/{code}")
+	public void remove(@PathVariable int code) {
+		// Peoples obj = selectForCode(code);
+		Peoples obj = selectForCod(code);
 		action.delete(obj);
+
 	}
 
 	@GetMapping("/api/orderName")
@@ -58,21 +71,25 @@ public class Controller {
 
 	}
 
-//	@GetMapping("/api")
-//	public List<Peoples> select() {
-//		return action.findAll();
-//		
-//		
-//	}
+	@GetMapping("/api")
+	public List<Peoples> select() {
+		return action.findAll();
 
-	public ResponseEntity<?> select() {
-		return service.select();
 	}
+//	@GetMapping("/api")
+//	public ResponseEntity<?> select() {
+//		return service.select();
 
 	@GetMapping("/api/{codigo}")
 	public Peoples selectForCod(@PathVariable int codigo) {
-		return action.findByCodigo(codigo);
+		return action.findByCode(codigo);
 	}
+
+//	@GetMapping("/api/{code}")
+//	public ResponseEntity<?> selectForCode(@PathVariable int code) {
+//		return service.selectForCode(code);
+//
+//	}
 
 	@PostMapping("/api")
 	// public Peoples register(@RequestBody Peoples obj) {

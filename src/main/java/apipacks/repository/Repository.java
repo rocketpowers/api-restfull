@@ -11,7 +11,7 @@ public interface Repository extends CrudRepository<Peoples, Integer> {
 
 	List<Peoples> findAll();
 
-	Peoples findByCodigo(int codigo);
+	Peoples findByCode(int code);
 
 	List<Peoples> findByOrderByName();
 
@@ -35,4 +35,18 @@ public interface Repository extends CrudRepository<Peoples, Integer> {
 	@Query(value = "SELECT * FROM peoples WHERE age >= :age", nativeQuery = true)
 	List<Peoples> ageOlderOrEqual(int age);
 
+	int countBycode(int code);
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
