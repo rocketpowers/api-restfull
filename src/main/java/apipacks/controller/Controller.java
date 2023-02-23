@@ -37,19 +37,12 @@ public class Controller {
 
 	}
 
-//	@DeleteMapping("/api/{code}")
-//	public ResponseEntity<?> remove(@PathVariable int code) {
-//		return service.remove(code);
-//
-//	}
-
 	@DeleteMapping("/api/{code}")
-	public void remove(@PathVariable int code) {
-		// Peoples obj = selectForCode(code);
-		Peoples obj = selectForCod(code);
-		action.delete(obj);
+	public ResponseEntity<?> remove(@PathVariable int code) {
+		return service.remove(code);
 
 	}
+
 
 	@GetMapping("/api/orderName")
 	public List<Peoples> orderNames() {

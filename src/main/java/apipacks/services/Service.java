@@ -71,4 +71,18 @@ public class Service {
 
 		}
 	}
+	
+	public ResponseEntity<?>remove(int code){
+		if(action.countBycode(code) == 0) {
+			message.setMessage("code not found");
+			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+		}else{ 
+		
+		Peoples obj = action.findByCode(code);
+		action.delete(obj);
+		message.setMessage("removed sucessfull");
+		return new ResponseEntity<>(message, HttpStatus.OK);
+		
+		}
+	}
 }
