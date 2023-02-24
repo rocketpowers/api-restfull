@@ -16,7 +16,11 @@ public class Peoples {
 	private int code;
 
 	private String name;
+	
+	private String email;
 
 	private int age;
+	
+
 
 }

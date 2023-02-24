@@ -16,16 +16,21 @@ public class Service {
 
 	@Autowired
 	private Repository action;
-
-	// register
-
+	
 	public ResponseEntity<?> register(Peoples obj) {
 		if (obj.getName().equals("")) {
 			message.setMessage("the name is empty");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+			
 		} else if (obj.getAge() < 0) {
 			message.setMessage("invalid age");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+			
+		}else if (obj.getEmail().equals("")) {
+			message.setMessage("the email is empty");
+			return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+	
+			
 		} else {
 
 			/* action.save(obj); */
@@ -60,29 +65,37 @@ public class Service {
 		if (action.countBycode(obj.getCode()) == 0) {
 			message.setMessage("code not found");
 			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+			
 		} else if (obj.getName().equals("")) {
 			message.setMessage("insert a valid name");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+			
+		}else if(obj.getEmail().equals("")) {
+			message.setMessage("insert valid email");
+			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+			
+			
 		} else if (obj.getAge() < 0) {
 			message.setMessage("insert a valid age");
 			return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+			
 		} else {
 			return new ResponseEntity<>(action.save(obj), HttpStatus.OK);
 
 		}
 	}
-	
-	public ResponseEntity<?>remove(int code){
-		if(action.countBycode(code) == 0) {
+
+	public ResponseEntity<?> remove(int code) {
+		if (action.countBycode(code) == 0) {
 			message.setMessage("code not found");
 			return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
-		}else{ 
-		
-		Peoples obj = action.findByCode(code);
-		action.delete(obj);
-		message.setMessage("removed sucessfull");
-		return new ResponseEntity<>(message, HttpStatus.OK);
-		
+		} else {
+
+			Peoples obj = action.findByCode(code);
+			action.delete(obj);
+			message.setMessage("removed sucessfull");
+			return new ResponseEntity<>(message, HttpStatus.OK);
+
 		}
 	}
 }
